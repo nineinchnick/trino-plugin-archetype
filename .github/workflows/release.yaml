@@ -22,7 +22,7 @@ jobs:
           git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
       - name: Prepare release
-        run: ./mvnw -B release:prepare
+        run: mvn -B release:prepare
       - name: Save version number in env
         run: |
           echo "VERSION=$(grep 'project.rel.pl.net.was\\:trino-git=' release.properties | cut -d'=' -f2)" >> $GITHUB_ENV
@@ -35,7 +35,7 @@ jobs:
           files: |
             target/*.zip
       - name: Publish JAR
-        run: ./mvnw -B release:perform -Darguments=-Dgpg.skip
+        run: mvn -B release:perform -Darguments=-Dgpg.skip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload test report
