@@ -19,8 +19,3 @@ mvn archetype:generate \
   -DartifactId=<my-artifactId>
   -DgithubRepo=<owner/repo>
 ```
-
-## TODO
-
-* mark `${githubRepo}` as a required property
-* the CI should create a new project and run tests in it
