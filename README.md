@@ -45,3 +45,7 @@ git branch -M main
 git remote add origin git@github.com:nineinchnick/trino-faker.git
 git push -u origin main
 ```
+
+> Note that the release workflow requires the following secrets to be set:
+> * `DOCKERHUB_USERNAME`
+> * `DOCKERHUB_TOKEN`
