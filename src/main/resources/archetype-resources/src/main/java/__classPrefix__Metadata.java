@@ -26,9 +26,10 @@ import io.trino.spi.connector.ConnectorSession;
 import io.trino.spi.connector.ConnectorTableHandle;
 import io.trino.spi.connector.ConnectorTableMetadata;
 import io.trino.spi.connector.ConnectorTableProperties;
+import io.trino.spi.connector.RetryMode;
 import io.trino.spi.connector.SchemaTableName;
 import io.trino.spi.connector.SchemaTablePrefix;
-import io.trino.spi.predicate.TupleDomain;
+import io.trino.spi.connector.TableColumnsMetadata;
 import io.trino.spi.statistics.ComputedStatistics;
 
 import javax.inject.Inject;
@@ -37,7 +38,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static io.trino.spi.type.VarcharType.VARCHAR;
 import static java.util.stream.Collectors.toList;
@@ -72,13 +73,7 @@ public class ${classPrefix}Metadata
         if (!schemaTableName.getSchemaName().equals(SCHEMA_NAME)) {
             return null;
         }
-        return new ${classPrefix}TableHandle(
-                schemaTableName,
-                TupleDomain.none(),
-                0,
-                Integer.MAX_VALUE,
-                1,
-                null);
+        return new ${classPrefix}TableHandle(schemaTableName);
     }
 
     @Override
@@ -129,19 +124,20 @@ public class ${classPrefix}Metadata
     }
 
     @Override
-    public Map<SchemaTableName, List<ColumnMetadata>> listTableColumns(
-            ConnectorSession connectorSession,
-            SchemaTablePrefix schemaTablePrefix)
+    public Stream<TableColumnsMetadata> streamTableColumns(ConnectorSession session, SchemaTablePrefix prefix)
     {
-        return columns.entrySet()
-                .stream()
-                .collect(Collectors.toMap(
-                        e -> new SchemaTableName(schemaTablePrefix.getSchema().orElse(""), e.getKey()),
-                        Map.Entry::getValue));
+        return columns.entrySet().stream()
+                .map(entry -> TableColumnsMetadata.forTable(
+                        new SchemaTableName(prefix.getSchema().orElse(""), entry.getKey()),
+                        entry.getValue()));
     }
 
     @Override
-    public ConnectorInsertTableHandle beginInsert(ConnectorSession session, ConnectorTableHandle connectorTableHandle)
+    public ConnectorInsertTableHandle beginInsert(
+            ConnectorSession session,
+            ConnectorTableHandle connectorTableHandle,
+            List<ColumnHandle> columns,
+            RetryMode retryMode)
     {
         ${classPrefix}TableHandle tableHandle = Types.checkType(connectorTableHandle, ${classPrefix}TableHandle.class, "tableHandle");
         return new ${classPrefix}InsertTableHandle(tableHandle);

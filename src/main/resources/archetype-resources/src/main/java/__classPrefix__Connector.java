@@ -14,10 +14,10 @@
 
 package $package;
 
-import io.airlift.bootstrap.LifeCycleManager;
 import io.trino.spi.connector.Connector;
 import io.trino.spi.connector.ConnectorMetadata;
 import io.trino.spi.connector.ConnectorRecordSetProvider;
+import io.trino.spi.connector.ConnectorSession;
 import io.trino.spi.connector.ConnectorSplitManager;
 import io.trino.spi.connector.ConnectorTransactionHandle;
 import io.trino.spi.transaction.IsolationLevel;
@@ -30,32 +30,29 @@ import static $package.${classPrefix}TransactionHandle.INSTANCE;
 public class ${classPrefix}Connector
         implements Connector
 {
-    private final LifeCycleManager lifeCycleManager;
     private final ${classPrefix}Metadata metadata;
     private final ${classPrefix}SplitManager splitManager;
     private final ${classPrefix}RecordSetProvider recordSetProvider;
 
     @Inject
     public ${classPrefix}Connector(
-            LifeCycleManager lifeCycleManager,
             ${classPrefix}Metadata metadata,
             ${classPrefix}SplitManager splitManager,
             ${classPrefix}RecordSetProvider recordSetProvider)
     {
-        this.lifeCycleManager = requireNonNull(lifeCycleManager, "lifeCycleManager is null");
         this.metadata = requireNonNull(metadata, "metadata is null");
         this.splitManager = requireNonNull(splitManager, "splitManager is null");
         this.recordSetProvider = requireNonNull(recordSetProvider, "recordSetProvider is null");
     }
 
     @Override
-    public ConnectorTransactionHandle beginTransaction(IsolationLevel isolationLevel, boolean readOnly)
+    public ConnectorTransactionHandle beginTransaction(IsolationLevel isolationLevel, boolean readOnly, boolean autoCommit)
     {
         return INSTANCE;
     }
 
     @Override
-    public ConnectorMetadata getMetadata(ConnectorTransactionHandle transaction)
+    public ConnectorMetadata getMetadata(ConnectorSession session, ConnectorTransactionHandle transaction)
     {
         return metadata;
     }
@@ -70,11 +67,5 @@ public class ${classPrefix}Connector
     public ConnectorRecordSetProvider getRecordSetProvider()
     {
         return recordSetProvider;
-    }
-
-    @Override
-    public final void shutdown()
-    {
-        lifeCycleManager.stop();
     }
 }
