@@ -25,7 +25,7 @@ public class Test${classPrefix}Queries
     protected QueryRunner createQueryRunner()
             throws Exception
     {
-        return ${classPrefix}}QueryRunner.createQueryRunner();
+        return ${classPrefix}QueryRunner.createQueryRunner();
     }
 
     @Test
