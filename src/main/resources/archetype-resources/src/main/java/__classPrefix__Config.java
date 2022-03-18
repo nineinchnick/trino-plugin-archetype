@@ -15,7 +15,6 @@
 package $package;
 
 import io.airlift.configuration.Config;
-import io.airlift.configuration.ConfigSecuritySensitive;
 
 public class ${classPrefix}Config
 {

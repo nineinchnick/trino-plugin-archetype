@@ -1,4 +1,4 @@
-FROM trinodb/trino:372
+FROM trinodb/trino:374
 
 ARG VERSION
 

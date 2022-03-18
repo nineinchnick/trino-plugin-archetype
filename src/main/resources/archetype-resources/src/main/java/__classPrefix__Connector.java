@@ -24,8 +24,8 @@ import io.trino.spi.transaction.IsolationLevel;
 
 import javax.inject.Inject;
 
-import static java.util.Objects.requireNonNull;
 import static $package.${classPrefix}TransactionHandle.INSTANCE;
+import static java.util.Objects.requireNonNull;
 
 public class ${classPrefix}Connector
         implements Connector
