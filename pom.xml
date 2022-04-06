@@ -43,6 +43,14 @@
         <project.scm.id>github</project.scm.id>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub nineinchnick Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/nineinchnick/trino-plugin-archetype</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <extensions>
             <extension>
