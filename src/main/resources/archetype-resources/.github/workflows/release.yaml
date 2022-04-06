@@ -39,7 +39,7 @@ jobs:
           ./docker-build.sh
       - name: Save version number in env
         run: |
-          echo "VERSION=$(grep 'project.rel.$groupId\\:$artifactId=' release.properties | cut -d'=' -f2)" >> $GITHUB_ENV
+          echo "VERSION=$(grep 'project\\.rel\\..*=' release.properties | cut -d'=' -f2)" >> $GITHUB_ENV
       - uses: marvinpinto/action-automatic-releases@v1.2.1
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
