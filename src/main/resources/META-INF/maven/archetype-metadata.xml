@@ -46,6 +46,7 @@ under the License.
                 <include>docker-build.sh</include>
                 <include>README.md</include>
                 <include>LICENSE</include>
+                <include>jreleaser.yml</include>
             </includes>
         </fileSet>
 

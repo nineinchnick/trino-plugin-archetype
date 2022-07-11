@@ -35,10 +35,10 @@ import io.trino.spi.statistics.ComputedStatistics;
 import javax.inject.Inject;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import static io.trino.spi.type.VarcharType.VARCHAR;
 import static java.util.stream.Collectors.toList;
@@ -124,12 +124,13 @@ public class ${classPrefix}Metadata
     }
 
     @Override
-    public Stream<TableColumnsMetadata> streamTableColumns(ConnectorSession session, SchemaTablePrefix prefix)
+    public Iterator<TableColumnsMetadata> streamTableColumns(ConnectorSession session, SchemaTablePrefix prefix)
     {
         return columns.entrySet().stream()
                 .map(entry -> TableColumnsMetadata.forTable(
                         new SchemaTableName(prefix.getSchema().orElse(""), entry.getKey()),
-                        entry.getValue()));
+                        entry.getValue()))
+                .iterator();
     }
 
     @Override

@@ -1,0 +1,19 @@
+project:
+  name: trino-plugin-archetype
+  description: Maven archetype to create new Trino plugins
+  license: Apache-2
+  java:
+    groupId: pl.net.was
+    version: 11
+  authors:
+    - Jan Waś
+  extraProperties:
+    inceptionYear: 2021
+
+files:
+  artifacts:
+    - path: "target/{{projectName}}-{{projectVersion}}.jar"
+
+release:
+  github:
+    owner: nineinchnick

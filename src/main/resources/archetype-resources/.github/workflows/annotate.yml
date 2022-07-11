@@ -8,7 +8,7 @@ on:
 
 jobs:
   annotate:
-    if: github.repository == '$githubRepo'
+    if: github.repository_owner == '$githubRepo'
     runs-on: ubuntu-latest
     steps:
       - name: 'Download artifact'
