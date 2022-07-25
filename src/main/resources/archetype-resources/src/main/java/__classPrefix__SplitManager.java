@@ -49,7 +49,6 @@ public class ${classPrefix}SplitManager
             ConnectorTransactionHandle transaction,
             ConnectorSession session,
             ConnectorTableHandle table,
-            SplitSchedulingStrategy splitSchedulingStrategy,
             DynamicFilter dynamicFilter,
             Constraint constraint)
     {
