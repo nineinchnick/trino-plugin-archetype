@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>pl.net.was</groupId>
+        <artifactId>trino-plugin-archetype-root</artifactId>
+        <version>1.9-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>archetype-builder</artifactId>
+    <description>Archetype Builder</description>
+    <packaging>pom</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>pl.net.was</groupId>
+            <artifactId>trino-example-plugin</artifactId>
+            <version>0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-sources</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/trino-example-plugin</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/../trino-example-plugin</directory>
+                                    <excludes>
+                                        <exclude>**/*.iml</exclude>
+                                        <exclude>target</exclude>
+                                    </excludes>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>overwrite-generated-meta</id>
+                        <!-- Run after archetype:create-from-project -->
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/trino-example-plugin/target/generated-sources/archetype/src/main/resources/META-INF/maven</outputDirectory>
+                            <overwrite>true</overwrite>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/main/resources/META-INF/maven</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>overwrite-generated-pom</id>
+                        <!-- Run after archetype:create-from-project -->
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/trino-example-plugin/target/generated-sources/archetype</outputDirectory>
+                            <overwrite>true</overwrite>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/main/resources</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>pom.xml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>overwrite-generated-it</id>
+                        <!-- Run after archetype:create-from-project -->
+                        <phase>process-sources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/trino-example-plugin/target/generated-sources/archetype/src/test/resources/projects/basic</outputDirectory>
+                            <overwrite>true</overwrite>
+                            <resources>
+                                <resource>
+                                    <directory>${project.basedir}/src/test/resources/projects/it-basic</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-invoker-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <pomIncludes>
+                        <pomInclude>pom.xml</pomInclude>
+                    </pomIncludes>
+                    <projectsDirectory>${project.build.directory}/trino-example-plugin/target/generated-sources/archetype</projectsDirectory>
+                    <noLog>false</noLog>
+                    <streamLogs>true</streamLogs>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-archetype</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <projectsDirectory>${project.build.directory}/trino-example-plugin</projectsDirectory>
+
+                            <goals>
+                                <goal>org.apache.maven.plugins:maven-archetype-plugin:3.2.1:create-from-project -DartifactId=trino-plugin-artifact -Dversion=${project.version} -Darchetype.properties=${project.basedir}/archetype.properties -Darchetype.postPhase=validate</goal>
+                            </goals>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>package-archetype</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <goals>
+                                <goal>package</goal>
+                            </goals>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install-archetype</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <goals>
+                                <goal>install</goal>
+                            </goals>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>deploy-archetype</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <goals>
+                                <goal>deploy</goal>
+                            </goals>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

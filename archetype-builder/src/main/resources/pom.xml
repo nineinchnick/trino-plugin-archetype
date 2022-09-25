@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>pl.net.was</groupId>
+        <artifactId>trino-plugin-archetype-root</artifactId>
+        <version>${project.version}</version>
+        <!-- this file is copied to ${project.build.directory}/trino-example-plugin/target/generated-sources/archetype so add 4 levels to the relative path -->
+        <relativePath>../../../../../../pom.xml</relativePath>
+    </parent>
+
+    <artifactId>trino-plugin-archetype</artifactId>
+    <description>Maven Archetype for Trino Plugins</description>
+    <packaging>maven-archetype</packaging>
+
+    <properties>
+        <air.main.basedir>${project.parent.basedir}</air.main.basedir>
+    </properties>
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+                <version>3.2.1</version>
+            </extension>
+        </extensions>
+    </build>
+</project>
