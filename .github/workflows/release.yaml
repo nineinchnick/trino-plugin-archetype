@@ -25,13 +25,13 @@ jobs:
           git config user.name "${{ github.event.head_commit.committer.name }}"
           git config user.email "${{ github.event.head_commit.committer.email }}"
       - name: Prepare release
-        run: mvn -B release:prepare
+        run: mvn -B release:prepare -pl '!trino-example-plugin'
       - name: Save version number in env
         run: |
           echo "VERSION=$(grep 'project.rel.pl.net.was\\:trino-plugin-archetype=' release.properties | cut -d'=' -f2)" >> $GITHUB_ENV
 
       - name: Publish JAR
-        run: mvn -B release:perform -Darguments=-Dgpg.skip
+        run: mvn -B release:perform -Darguments=-Dgpg.skip -pl '!trino-example-plugin'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
