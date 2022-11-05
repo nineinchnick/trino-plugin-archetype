@@ -16,6 +16,10 @@ jobs:
           distribution: 'adopt'
           server-id: github
           cache: 'maven'
+      - name: Configure Problem Matchers
+        run: |
+          echo "::add-matcher::.github/problem-matcher.json"
+          echo "::remove-matcher owner=java::"
       - name: Build with Maven
         run: mvn -B package
       - name: Upload test report

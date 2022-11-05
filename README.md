@@ -26,12 +26,13 @@ Then run the following, which will create a new directory with the plugin projec
 mvn archetype:generate \
   -DarchetypeGroupId=pl.net.was \
   -DarchetypeArtifactId=trino-plugin-archetype \
-  -DarchetypeVersion=1.7 \
-  -DgroupId=<my.groupid> \
-  -DartifactId=<my-artifactId>
-  -DclassPrefix=<Name>
-  -DconnectorNAme=<name>
-  -DgithubRepo=<owner/repo>
+  -DarchetypeVersion=1.9 \
+  -DgroupId=$my_group_id \
+  -DartifactId=$my_artifact_id \
+  -DclassPrefix=$class_prefix \
+  -DconnectorName=$connector_name \
+  -DgithubOwner=$github_owner \
+  -DgithubRepo=$github_repo
 ```
 
 Create a Github repository to host the plugin, then make the initial commit and push it:
