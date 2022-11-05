@@ -26,7 +26,7 @@ Then run the following, which will create a new directory with the plugin projec
 mvn archetype:generate \
   -DarchetypeGroupId=pl.net.was \
   -DarchetypeArtifactId=trino-plugin-archetype \
-  -DarchetypeVersion=1.10 \
+  -DarchetypeVersion=1.11 \
   -DgroupId=$my_group_id \
   -DartifactId=$my_artifact_id \
   -DclassPrefix=$class_prefix \
