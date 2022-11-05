@@ -27,7 +27,7 @@ jobs:
       - name: Install example plugin locally
         run: mvn -B install -pl 'trino-example-plugin'
       - name: Prepare release
-        run: mvn -B release:prepare -pl '!trino-example-plugin'
+        run: mvn -B release:prepare -DignoreSnapshots=true -pl '!trino-example-plugin'
       - name: Save version number in env
         run: |
           echo "VERSION=$(grep 'project.rel.pl.net.was\\:trino-plugin-archetype=' release.properties | cut -d'=' -f2)" >> $GITHUB_ENV
