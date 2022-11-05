@@ -23,7 +23,7 @@
     <packaging>pom</packaging>
 
     <scm>
-        <developerConnection>scm:git:https://github.com/nineinchnick/trino-cloud.git</developerConnection>
+        <developerConnection>scm:git:https://github.com/nineinchnick/trino-plugin-archetype.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
