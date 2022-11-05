@@ -24,6 +24,8 @@ jobs:
         run: |
           git config user.name "${{ github.event.head_commit.committer.name }}"
           git config user.email "${{ github.event.head_commit.committer.email }}"
+      - name: Install example plugin locally
+        run: mvn -B install -pl 'trino-example-plugin'
       - name: Prepare release
         run: mvn -B release:prepare -pl '!trino-example-plugin'
       - name: Save version number in env

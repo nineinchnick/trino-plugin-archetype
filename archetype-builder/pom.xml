@@ -30,7 +30,7 @@
         <dependency>
             <groupId>pl.net.was</groupId>
             <artifactId>trino-example-plugin</artifactId>
-            <version>0.2-SNAPSHOT</version>
+            <version>0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
