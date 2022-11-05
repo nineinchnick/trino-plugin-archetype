@@ -18,13 +18,13 @@
 
     <groupId>pl.net.was</groupId>
     <artifactId>trino-plugin-archetype-root</artifactId>
-    <version>1.10-SNAPSHOT</version>
+    <version>1.10</version>
     <description>Maven Archetype for Trino Plugins</description>
     <packaging>pom</packaging>
 
     <scm>
         <developerConnection>scm:git:https://github.com/nineinchnick/trino-plugin-archetype.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>trino-plugin-archetype-root-1.10</tag>
     </scm>
 
     <licenses>
