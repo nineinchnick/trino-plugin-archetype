@@ -19,7 +19,7 @@
     <parent>
         <groupId>pl.net.was</groupId>
         <artifactId>trino-plugin-archetype-root</artifactId>
-        <version>1.10</version>
+        <version>1.11-SNAPSHOT</version>
     </parent>
 
     <artifactId>archetype-builder</artifactId>
