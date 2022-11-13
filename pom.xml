@@ -37,6 +37,7 @@
 
     <modules>
         <module>archetype-builder</module>
+        <module>trino-example-jdbc</module>
         <module>trino-example-plugin</module>
     </modules>
 
