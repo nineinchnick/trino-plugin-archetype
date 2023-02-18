@@ -49,9 +49,9 @@ public class ExampleQueryRunner
         queryRunner.installPlugin(new ExamplePlugin());
 
         Map<String, String> connectorProperties = Map.of(
-        "connection-url", server.getJdbcUrl(),
-        "connection-user", server.getUser(),
-        "connection-password", server.getPassword());
+                "connection-url", server.getJdbcUrl(),
+                "connection-user", server.getUser(),
+                "connection-password", server.getPassword());
         queryRunner.createCatalog(
                 "example",
                 "example-jdbc",

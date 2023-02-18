@@ -20,6 +20,7 @@ import io.trino.plugin.jdbc.ConnectionFactory;
 import io.trino.plugin.jdbc.JdbcTypeHandle;
 import io.trino.plugin.jdbc.QueryBuilder;
 import io.trino.plugin.jdbc.WriteMapping;
+import io.trino.plugin.jdbc.logging.RemoteQueryModifier;
 import io.trino.plugin.jdbc.mapping.IdentifierMapping;
 import io.trino.spi.TrinoException;
 import io.trino.spi.connector.ConnectorSession;
@@ -71,7 +72,7 @@ public class ExampleClient
             QueryBuilder queryBuilder,
             IdentifierMapping identifierMapping)
     {
-        super("\"", connectionFactory, queryBuilder, config.getJdbcTypesMappedToVarchar(), identifierMapping, true);
+        super(config, "\"", connectionFactory, queryBuilder, identifierMapping, RemoteQueryModifier.NONE);
     }
 
     @Override

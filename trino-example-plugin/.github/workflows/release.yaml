@@ -52,9 +52,12 @@ jobs:
           echo "VERSION=$(grep 'project\\.rel\\..*=' release.properties | cut -d'=' -f2)" >> $GITHUB_ENV
 
       - name: Publish JAR
-        run: ./mvnw -B release:perform -Darguments=-Dgpg.skip
+        run: ./mvnw -s .github/settings.xml -B release:perform -Darguments=-Dgpg.skip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ossrhUsername: ${{ secrets.OSSRH_USERNAME }}
+          ossrhPassword: ${{ secrets.OSSRH_PASSWORD }}
+          gpgPassphrase: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Run JReleaser
         uses: jreleaser/release-action@v2

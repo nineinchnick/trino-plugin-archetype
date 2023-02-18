@@ -50,3 +50,5 @@ git push -u origin main
 > Note that the release workflow requires the following secrets to be set:
 > * `DOCKERHUB_USERNAME`
 > * `DOCKERHUB_TOKEN`
+> * `OSSRH_USERNAME`
+> * `OSSRH_PASSWORD`
