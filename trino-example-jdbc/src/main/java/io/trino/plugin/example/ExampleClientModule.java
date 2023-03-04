@@ -20,26 +20,17 @@ import com.google.inject.Singleton;
 import io.airlift.configuration.AbstractConfigurationAwareModule;
 import io.trino.plugin.jdbc.BaseJdbcConfig;
 import io.trino.plugin.jdbc.ConnectionFactory;
-import io.trino.plugin.jdbc.DecimalModule;
 import io.trino.plugin.jdbc.DriverConnectionFactory;
 import io.trino.plugin.jdbc.ForBaseJdbc;
 import io.trino.plugin.jdbc.JdbcClient;
-import io.trino.plugin.jdbc.JdbcJoinPushdownSupportModule;
 import io.trino.plugin.jdbc.JdbcStatisticsConfig;
-import io.trino.plugin.jdbc.QueryBuilder;
-import io.trino.plugin.jdbc.RemoteQueryCancellationModule;
 import io.trino.plugin.jdbc.credential.CredentialProvider;
-import io.trino.plugin.jdbc.ptf.Query;
-import io.trino.spi.ptf.ConnectorTableFunction;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import static com.google.inject.multibindings.Multibinder.newSetBinder;
-import static com.google.inject.multibindings.OptionalBinder.newOptionalBinder;
 import static io.airlift.configuration.ConfigBinder.configBinder;
-import static io.trino.plugin.jdbc.JdbcModule.bindSessionPropertiesProvider;
 
 public class ExampleClientModule
         extends AbstractConfigurationAwareModule

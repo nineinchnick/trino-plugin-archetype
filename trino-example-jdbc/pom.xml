@@ -10,7 +10,7 @@
     <parent>
         <groupId>io.airlift</groupId>
         <artifactId>airbase</artifactId>
-        <version>130</version>
+        <version>133</version>
     </parent>
 
     <licenses>
@@ -34,10 +34,10 @@
         <air.check.fail-checkstyle>true</air.check.fail-checkstyle>
         <air.check.skip-checkstyle>false</air.check.skip-checkstyle>
 
-        <dep.trino.version>402</dep.trino.version>
-        <dep.airlift.version>219</dep.airlift.version>
-        <dep.errorprone.version>2.16</dep.errorprone.version>
-        <dep.joda.version>2.12.1</dep.joda.version>
+        <dep.trino.version>409</dep.trino.version>
+        <dep.airlift.version>225</dep.airlift.version>
+        <dep.errorprone.version>2.18.0</dep.errorprone.version>
+        <dep.joda.version>2.12.2</dep.joda.version>
 
         <air.javadoc.lint>-missing</air.javadoc.lint>
         <project.scm.id>github</project.scm.id>
@@ -57,12 +57,6 @@
     </distributionManagement>
 
     <dependencies>
-        <dependency>
-            <groupId>io.airlift</groupId>
-            <artifactId>bootstrap</artifactId>
-            <version>${dep.airlift.version}</version>
-        </dependency>
-
         <dependency>
             <groupId>io.airlift</groupId>
             <artifactId>configuration</artifactId>
@@ -86,6 +80,7 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -106,8 +101,17 @@
         </dependency>
 
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
+            <groupId>com.github.docker-java</groupId>
+            <artifactId>docker-java-api</artifactId>
+            <version>3.2.13</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>17.0.0</version>
+            <scope>test</scope>
         </dependency>
 
         <!-- Trino SPI -->
@@ -127,6 +131,13 @@
         <dependency>
             <groupId>io.airlift</groupId>
             <artifactId>slice</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>0.17</version>
             <scope>provided</scope>
         </dependency>
 
@@ -204,7 +215,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.5.0</version>
+            <version>42.5.4</version>
             <scope>test</scope>
         </dependency>
 

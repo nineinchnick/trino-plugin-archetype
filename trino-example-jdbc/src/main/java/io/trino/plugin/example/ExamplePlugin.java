@@ -15,13 +15,11 @@ package io.trino.plugin.example;
 
 import io.trino.plugin.jdbc.JdbcPlugin;
 
-import static io.airlift.configuration.ConfigurationAwareModule.combine;
-
 public class ExamplePlugin
         extends JdbcPlugin
 {
     public ExamplePlugin()
     {
-        super("example-jdbc", new ExampleClientModule());
+        super("example_jdbc", new ExampleClientModule());
     }
 }
