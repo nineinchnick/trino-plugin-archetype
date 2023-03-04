@@ -27,7 +27,7 @@ import static java.util.Objects.requireNonNull;
 public class ExampleConnectorFactory
         implements ConnectorFactory
 {
-    public static final String CONNECTOR_NAME = "example-connector";
+    public static final String CONNECTOR_NAME = "example_connector";
 
     @Override
     public String getName()

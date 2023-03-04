@@ -50,7 +50,7 @@ public class ExampleQueryRunner
 
         queryRunner.createCatalog(
                 "example",
-                "example-connector",
+                "example_connector",
                 Map.of());
 
         return queryRunner;

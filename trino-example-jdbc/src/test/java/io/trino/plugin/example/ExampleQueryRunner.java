@@ -52,10 +52,7 @@ public class ExampleQueryRunner
                 "connection-url", server.getJdbcUrl(),
                 "connection-user", server.getUser(),
                 "connection-password", server.getPassword());
-        queryRunner.createCatalog(
-                "example",
-                "example_jdbc",
-                connectorProperties);
+        queryRunner.createCatalog("example", "example_jdbc", connectorProperties);
 
         return queryRunner;
     }
