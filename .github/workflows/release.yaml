@@ -31,7 +31,7 @@ jobs:
           echo "VERSION=$(grep 'project.rel.pl.net.was\\:trino-plugin-archetype=' release.properties | cut -d'=' -f2)" >> $GITHUB_ENV
 
       - name: Publish JAR
-        run: mvn -B release:perform -DgithubOwner=nineinchnick -DgithubRepo=trino-plugin-archetype -Darguments=-Dgpg.skip
+        run: mvn -B release:perform -DgithubOwner=nineinchnick -DgithubRepo=trino-plugin-archetype -Darguments="-Dgpg.skip -Dmaven.deploy.skip=true"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
