@@ -17,7 +17,7 @@ Maven archetype to create new Trino plugins. It provides:
 This archetype is not yet published to Maven Central, so install it first:
 
 ```bash
-mvn install
+mvn clean install
 ```
 
 Then run the following, which will create a new directory with the plugin project:
