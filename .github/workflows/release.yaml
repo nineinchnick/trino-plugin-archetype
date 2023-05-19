@@ -28,7 +28,7 @@ jobs:
         run: mvn -B release:prepare -DgithubOwner=nineinchnick -DgithubRepo=trino-plugin-archetype
       - name: Save version number in env
         run: |
-          echo "VERSION=$(grep 'project.rel.pl.net.was\\:trino-plugin-archetype=' release.properties | cut -d'=' -f2)" >> $GITHUB_ENV
+          echo "VERSION=$(grep 'project.rel.pl.net.was\\:trino-plugin-archetype-root=' release.properties | cut -d'=' -f2)" >> $GITHUB_ENV
 
       - name: Publish JAR
         run: mvn -B release:perform -DgithubOwner=nineinchnick -DgithubRepo=trino-plugin-archetype -Darguments="-Dgpg.skip -Dmaven.deploy.skip=true"
@@ -49,6 +49,7 @@ jobs:
         with:
           name: test report ${{ github.job }}
           path: |
+            release.properties
             **/surefire-reports/TEST-*.xml
             out/jreleaser/trace.log
             out/jreleaser/output.properties
