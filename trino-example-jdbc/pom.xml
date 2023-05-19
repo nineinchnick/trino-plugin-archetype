@@ -4,7 +4,7 @@
 
     <groupId>pl.net.was</groupId>
     <artifactId>trino-example-jdbc</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.5</version>
     <packaging>trino-plugin</packaging>
 
     <parent>
@@ -44,7 +44,7 @@
 
     <scm>
         <developerConnection>scm:git:https://github.com/${githubOwner}/${githubRepo}.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>trino-plugin-archetype-root-1.15</tag>
     </scm>
 
     <distributionManagement>
