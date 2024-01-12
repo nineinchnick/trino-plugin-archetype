@@ -13,6 +13,7 @@
  */
 package io.trino.plugin.example;
 
+import io.trino.testing.containers.junit.ReportLeakedContainers;
 import org.intellij.lang.annotations.Language;
 import org.testcontainers.containers.PostgreSQLContainer;
 
@@ -49,6 +50,7 @@ public class TestingPostgreSqlServer
                 .withHostConfig(requireNonNull(cmd.getHostConfig(), "hostConfig is null")
                         .withPublishAllPorts(true)));
         dockerContainer.start();
+        ReportLeakedContainers.ignoreContainerId(dockerContainer.getContainerId());
 
         execute("CREATE TABLE test (key INT, value VARCHAR)");
         execute("INSERT INTO test (key, value) VALUES (1, 'one'), (2, 'two')");
